@@ -1,0 +1,38 @@
+Use the following approach.
+Draw out recursion tree (usually with blank slate), then code based on tree.
+
+Example: For solving Leetcode Permutations problem:
+
+/*
+                                                       {}
+                          {1}                                     {2}                 {3}
+                        {1, 2} {1, 3}                           {2,1} {2,3}          {3,1}  {3,2} 
+                    {1, 2, 3}  {1, 3, 2}                       {2,1,3}  {2,3,1}       {3,1,2}   {3,2,1}
+
+*/
+
+vector<vector<int>> result;
+void helper(vector<int>& nums, vector<int>& curState) {
+
+    if (curState.size() == nums.size()) {
+        result.push_back(curState);
+        return;
+    }
+    
+    for (int i = 0; i < nums.size(); ++i) {
+        int curNum = nums[i];
+        // search in curState if curNum is already in there
+        auto it = find(curState.begin(), curState.end(), curNum);
+        if (it == curState.end()) {
+            curState.push_back(curNum);
+            helper(nums, curState);
+            curState.pop_back();
+        }
+    }
+}
+
+vector<vector<int>> permute(vector<int>& nums) {
+    vector<int> curState; // starts off as an empty slate
+    helper(nums, curState);
+    return result;
+}
