@@ -1,22 +1,19 @@
-/* 
-* https://leetcode.com/problems/permutations/submissions/
-idea is to use backtracking algo, where we build a temp vector from scratch, and
-whenever we want to add a number into temp, we first search if it already exists in it. if not, then we add it to temp, call backtrack recursively again, 
-and after the call to backtrack, we just pop off the number we added to temp.
+// https://leetcode.com/problems/permutations/submissions/
+// similar to the solution in Permutations II, where we check used vector instead of searching if the element is in temp before adding to temp.
 
-example:
-let nums = [1,2,3], the following is recursion tree on temp variable:
-
-                                   {}
-                            {1}                 {2}                       {3}
-                        {1, 2}  {1, 3}         {2, 1}      {2, 3}       {3, 1}     {3, 2} 
-                     {1, 2, 3}  {1, 3, 2}      {2, 1, 3}  {2, 3, 1}    {3, 1, 2}   {3, 2, 1}
-
-runtime = space = O(n*n!)
-*/
-
-
-void backtrack(vector<int>& nums, vector<int>& temp, vector<vector<int>>& result) {
+class Solution {
+public:
+    
+    /*
+    s = {1, 2, 1}
+    
+    1        2         1                    i = 0, 3 choices
+ 12  11   21   21     11  12                  i = 1, 2 choices
+ 121  112  211  211    112   121              i = 2, 1 choice
+    */
+    
+    
+   void backtrack(vector<int>& nums, vector<bool>& used, vector<int>& temp, vector<vector<int>>& result) {
 
     if (temp.size() == nums.size()) {
         result.push_back(temp);
@@ -24,10 +21,12 @@ void backtrack(vector<int>& nums, vector<int>& temp, vector<vector<int>>& result
     }
 
     for (int i = 0; i < nums.size(); i++) {
-        if (find(temp.begin(), temp.end(), nums[i]) == temp.end()) { // if we haven't already used this number:
+        if (!used[i]) {
+            used[i] = true;
             temp.push_back(nums[i]);
-            backtrack(nums, temp, result);
+            backtrack(nums, used, temp, result);
             temp.pop_back();
+            used[i] = false;
         }
     }
 }
@@ -35,13 +34,9 @@ void backtrack(vector<int>& nums, vector<int>& temp, vector<vector<int>>& result
 vector<vector<int>> permute(vector<int>& nums) {
     vector<vector<int>> result;
     vector<int> temp;
-    backtrack(nums, temp, result);
+
+    vector<bool> used(nums.size(), 0);
+    backtrack(nums, used, temp, result);
     return result;
 }
-
-void main() {
-    vector<int> nums = { 1, 2, 3 };
-    permute(nums);
-
-    system("PAUSE");
-}
+};
