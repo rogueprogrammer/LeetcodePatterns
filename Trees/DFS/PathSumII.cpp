@@ -17,6 +17,8 @@ public:
     /*
     Template is to always pass the root value into the dfs funciton, and then in dfs function, during recursive case, add the left or right values into the variables
     that need to be passed to lower stages in the tree.
+    Runtime complexity: Line 26, pushing the path to res, the worse case scenario is when we have a complete binary tree and every path to leaf nodes
+    the path can be max length logn, and the number of leaf nodes in this scenario would be n/2. Thus, the time complexity is O(n/2*logn) = O(nlogn)
     */
     void dfs(TreeNode* root, int sum, int sumAcc, vector<vector<int>>& res, vector<int> path){
         
