@@ -1,5 +1,4 @@
 // https://leetcode.com/problems/binary-tree-maximum-path-sum/submissions/
-// passed 91/93 cases 
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -13,28 +12,32 @@
  
 */
 
+// solution i came up with after seeing solution:
+ int dfs(TreeNode* root, int& res){
+        if(!root){
+            return 0;
+        }
+        int left = max(0, dfs(root->left, res)); 
+        int right = max(0, dfs(root->right, res)); //compute value of right subtree
+        res = max(res, root->val+left+right);
+        return max(root->val+left, root->val+right);
+    } 
+    
+    
+    int maxPathSum(TreeNode* root) {
+        
+        int res = 0;
+        res = INT_MIN;
+        dfs(root, res);
+        return res;
+    }
 
+/* MY ORIGINAL SOLUTION, passed 91/93 cases
 class Solution {
 public:
         // do a post order traversal, piping up your sum to the parent and keep updating the global result in theprocess
 
-    /*
     
-    
-             10
-       2           12
-     7          20       -8
-      
-      
-     [9,6,-3,null,null,-6,2,null,null,2,null,-6,-6,-6] 
-      
-                 9
-            6        -3
-                 -6       2
-                         2  
-                        -6   -6
-                      -6
-    */       
     int dfs(TreeNode* root, int& res){
         
         if(!root->left && !root->right){
@@ -68,4 +71,5 @@ public:
         dfs(root, res);
         return res;
     }
+*/
 };
