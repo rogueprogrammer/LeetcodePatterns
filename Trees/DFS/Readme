@@ -1,0 +1,9 @@
+For DFS,
+Template is to always pass the root value into the dfs funciton, and then in dfs function, during recursive case, add the left or right values into the variables
+that need to be passed to lower stages in the tree.
+
+Analyze if the answer needs to be bottom up or top down DFS to choose between preorder or post order traversal. If you need to get to the leaves first,
+and then pipe up the solution upwards to parents, then use post order. 
+
+For tree construction problems, draw out the recursion tree to double check after coding its right. In the helper function for these problems, 
+keep indices left and right as variables. 
