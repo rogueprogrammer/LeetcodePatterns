@@ -1,0 +1,16 @@
+USE ISTRINGSTREAM TO PARSE OUT SPACES:
+
+Example:
+
+string s = "the      sky      is  blue   ";
+istringstream iss(s);
+string w;
+while(iss >> w){
+  cout << w << endl;
+}
+
+// OUTPUT:
+the
+sky
+is
+blue
