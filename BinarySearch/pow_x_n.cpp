@@ -17,7 +17,6 @@ class Solution {
 public:
     
     double helper(double x, long n){
-        cout << "x: " << x << " , n: " << n << endl;
         if(n == 0){return 1;}
         if(n == 1){return x;}
         if(n == 2){return x * x;}
