@@ -1,0 +1,16 @@
+Template for Binary Search
+
+int lo = 0;
+int hi = n; // n is max val
+
+while(lo + 1 < hi){
+  int mid = (lo + hi) / 2;
+  if(mid == what_we_looking_for){
+    return mid;
+  }
+  else if(mid > what_we_looking_for){
+    hi = mid;
+  } else{
+    lo = mid;
+  }
+}
