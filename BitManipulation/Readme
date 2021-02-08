@@ -1,0 +1,13 @@
+Get set of bits and its easier to then manipulate them 
+
+vector<bool> getBits(uint32_t n){
+        vector<bool> bits(32, 0);
+        int i = bits.size()-1;
+        while(n >= 1){
+            bits[i] = n % 2;
+            n /= 2;
+            --i;
+        }
+        
+        return bits;
+    }
