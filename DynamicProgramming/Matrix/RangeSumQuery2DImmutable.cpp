@@ -6,8 +6,8 @@ will store accumulated sums. we define dp[i][j] = sum from M[0][0] to M[i][j]
 dp[i][j] = matrix[i][j] + dp[i-1][j-1] + (dp[i-1][j] - dp[i-1][j-1]) + (dp[i][j-1] - dp[i-1][j-1])
 Note that extra row and column can be added to remove the need to check edge cases (top row and left most col). Step 1 only takes O(mn) to compute.
 
-Step 2 - Write out the dp matrix for the inputted matrix. It is quite easy to come up with
-the formula just eyeballing a sample rectangle
+Step 2 - In order to come up with the formula for the rangeSum, write out the dp matrix for the inputted matrix. 
+It is quite easy to come up with the formula just eyeballing a sample rectangle in the dp matrix.
 It can be seen that sum(r1, c1, r2, c2) = dp[r2][c2] - dp[r1-1][c2] - dp[r2][c1-1] + dp[r1-1][c1-1]
 Step2 takes only O(1) to compute. 
 */
