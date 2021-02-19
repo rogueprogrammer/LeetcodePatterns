@@ -1,16 +1,24 @@
 USE ISTRINGSTREAM TO PARSE OUT SPACES:
 
-Example:
+  Example:
 
-string s = "the      sky      is  blue   ";
-istringstream iss(s);
-string w;
-while(iss >> w){
-  cout << w << endl;
-}
+  string s = "the      sky      is  blue   ";
+  istringstream iss(s);
+  string w;
+  while(iss >> w){
+    cout << w;
+  }
 
-// OUTPUT:
-the
-sky
-is
-blue
+  // OUTPUT:
+  theskyisblue
+
+
+TRIMMING WHITE SPACES LEFT/RIGHT OF STRING:
+
+    string s= "       the sky is blue     ";
+    s.erase(0, s.find_first_not_of(' ')); // left white spaces
+    s.erase(s.find_last_not_of(' ')+1);  // right white spaces
+    cout << s + "hello" << endl;
+    
+    //OUTPUT:
+    the sky is bluehello
