@@ -54,21 +54,7 @@ public:
         
         return " " + under10[num-1];
     }
-    
-    // trim white spaces left of the first non-space character
-    static inline void ltrim(std::string &s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
-        return !std::isspace(ch);
-    }));
-    }
-    
-    //trim white spaces right of the first non-space character
-    static inline void rtrim(std::string &s) {
-    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
-        return !std::isspace(ch);
-    }).base(), s.end());
-    }
-    
+   
    string numberToWords(int num) {
         
        if(num == 0){
@@ -76,8 +62,8 @@ public:
        }
        
        string res = _numberToWords(num);
-       ltrim(res);
-       rtrim(res);
+       res.erase(0, res.find_first_not_of(' ')); //trim left white spaces
+       res.erase(res.find_last_not_of(' ')+1);   // trim right white spaces
        return res;
    }
    
