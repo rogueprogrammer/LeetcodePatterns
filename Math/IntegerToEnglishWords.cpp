@@ -19,40 +19,42 @@ public:
     //2,147,483,647 -> two billion one hundred forty seven million four hundred eighty three thousand six hundred forty seven
     string _numberToWords(int num) {
 
-     if (num == 0) {
-        return "";
-    }
+        if (num == 0) {
+            return "";
+        }
 
-    if (num >= 1000000000) {
-        int dig = num / 1000000000;
-        return _numberToWords(dig) + " Billion" + _numberToWords(num - (dig * 1000000000));
-    }
+        if (num >= 1000000000) {
+            int dig = num / 1000000000;
+            return _numberToWords(dig) + " Billion" + _numberToWords(num - (dig * 1000000000));
+        }
 
-    if (num >= 1000000) {
-        int dig = num / 1000000;
-        return _numberToWords(dig) + " Million" + _numberToWords(num - (dig * 1000000));
-    }
+        if (num >= 1000000) {
+            int dig = num / 1000000;
+            return _numberToWords(dig) + " Million" + _numberToWords(num - (dig * 1000000));
+        }
 
-    if (num >= 1000) {
-        int dig = num / 1000;
-        return _numberToWords(dig) + " Thousand" + _numberToWords(num - (dig*1000));
-    }
+        if (num >= 1000) {
+            int dig = num / 1000;
+            return _numberToWords(dig) + " Thousand" + _numberToWords(num - (dig*1000));
+        }
 
-    if (num >= 100) {
-        string dig = under10[(num / 100) - 1];
-        return " " + dig + " Hundred" + _numberToWords(num - ((num / 100) * 100));
-    }
+        if (num >= 100) {
+            string dig = under10[(num / 100) - 1];
+            return " " + dig + " Hundred" + _numberToWords(num - ((num / 100) * 100));
+        }
 
-    if (num >= 20) {
-        string dig = under100[(num / 10) - 1];
-        return " " + dig +  _numberToWords(num - ((num / 10) * 10));
-    }
+        if (num >= 20) {
+            string dig = under100[(num / 10) - 1];
+            return " " + dig +  _numberToWords(num - ((num / 10) * 10));
+        }
 
-    if (num >= 10) {
-        return " " + under20[num % 10];
+        if (num >= 10) {
+            return " " + under20[num % 10];
+        }
+        
+        return " " + under10[num-1];
     }
-    return " " + under10[num-1];
-}
+    
     // trim white spaces left of the first non-space character
     static inline void ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -68,9 +70,11 @@ public:
     }
     
    string numberToWords(int num) {
-    if(num == 0){
-        return "Zero";
-    }
+        
+       if(num == 0){
+            return "Zero";
+       }
+       
        string res = _numberToWords(num);
        ltrim(res);
        rtrim(res);
