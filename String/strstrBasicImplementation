@@ -1,0 +1,39 @@
+// https://leetcode.com/problems/implement-strstr/
+//O(m*n) runtime
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(haystack == "" && needle == ""){
+            return 0;
+        }
+        
+        if(needle == ""){
+            return 0;
+        }
+        
+        if(haystack == ""){
+            return -1;
+        }
+        if(needle.size() > haystack.size()){
+            return -1;
+        }
+        
+        int res = -1; // the index where it index is found
+        for(int i = 0; i < haystack.size(); ++i){
+            
+            if(haystack[i] == needle[0]){
+                res = i;
+                for(int j = 1; j <= needle.size(); ++j){
+                    if(j == needle.size()){
+                        return res;
+                    }
+                    if(needle[j] != haystack[i+j]){
+                        res = -1; //reset res
+                        break;
+                    }
+                }
+            }
+        }
+        return res;
+    }
+};
